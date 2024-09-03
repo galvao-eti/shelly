@@ -81,8 +81,6 @@ async function process(element)
         }
     });
 
-    console.log(request);
-
     const response = await fetch(request);
     const data = await response.text();
 
