@@ -33,7 +33,7 @@ flowchart LR
     resid --> shelly
 ```
 
-shelly can work with any CORS-enabled, HTTP backend. It transmits user input via a HTTP header called `SHELLY-INPUT`.
+shelly can work with any HTTP backend, running on the same machine or via CORS. It transmits user input via a HTTP header called `SHELLY-INPUT`.
 
 The server should implement:
 
