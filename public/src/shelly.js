@@ -8,7 +8,9 @@
  * @link https://github.com/galvao-eti/shelly
  */
 
-document.addEventListener('DOMContentLoaded', async function () {
+let responseType = null;
+
+document.addEventListener('DOMContentLoaded', function () {
     let shellyElement = document.createElement('div');
     shellyElement.setAttribute('id', 'shelly');
 
@@ -47,12 +49,25 @@ function newLine()
         if (e.code == 'Enter') {
             let data = await process(e.target);
 
-            let dataElement = document.createElement('div');
-
-            dataElement.setAttribute('class', 'data');
-            dataElement.insertAdjacentText('afterBegin', data);
+            if (CONFIG.debug === true) {
+                console.table(data);
+            }
             
-            lineElement.appendChild(dataElement);
+            if (typeof processResponse === 'function') {
+                processResponse(data);
+            } else {
+                let dataElement = document.createElement('div');
+
+                dataElement.setAttribute('class', 'data');
+
+                if (responseType.includes('text/html')) {
+                    dataElement.insertAdjacentHTML('afterBegin', data.response);
+                } else {
+                    dataElement.insertAdjacentText('afterBegin', data.response);
+                }
+                
+                lineElement.appendChild(dataElement);
+            }
 
             newLine();
         }
@@ -82,9 +97,17 @@ async function process(element)
     });
 
     const response = await fetch(request);
-    const data = await response.text();
+    responseType = response.headers.get("content-type");
 
-    if (response.status != 200) {
+    let data = null;
+
+    if (responseType.includes('application/json')) {
+        data = await response.json();
+    } else {
+        data = await response.text();
+    }
+
+    if (!response.ok) {
         data = 'Error processing the request.';
     }
     
