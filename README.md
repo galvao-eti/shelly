@@ -35,6 +35,12 @@ flowchart LR
 
 shelly can work with any HTTP backend, running on the same machine or via CORS. It transmits user input via a HTTP header called `SHELLY-INPUT`.
 
+If you provide a function named `processResponse`, shelly will automatically pass the response object to it. It will, otherwise:
+
+* Work with the main content of the response object as a `response` attribute, e.g. `data.response`;
+* Insert that response as HTML if the `Content-Type` response header includes `text/html`;
+* Insert that response as text otherwise.
+
 The server should implement:
 
 * A parser to break the input betwwen command, sub-command, flags, parameters, etc...
