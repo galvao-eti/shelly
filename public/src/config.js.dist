@@ -25,6 +25,7 @@ var CONFIG = CONFIG || (function () {
     message += " %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \n";
 
     return {
+        "debug": false,
         "MOTD": message,
         "user": {
             "name": "guest",
