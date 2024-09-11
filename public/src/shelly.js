@@ -25,6 +25,7 @@ function newLine()
     let lineElement = document.createElement('span');
     let promptElement = document.createElement('span');
     let readLineElement = document.createElement('input');
+    readLineElement.value = "";
 
     promptElement.setAttribute('class', 'prompt');
     promptElement.insertAdjacentText(
@@ -48,26 +49,31 @@ function newLine()
     currentLine.addEventListener('keydown', async function (e) {
         if (e.code == 'Enter') {
             let data = await process(e.target);
+            let dataElement = document.createElement('pre');
 
             if (CONFIG.debug === true) {
                 console.table(data);
             }
             
             if (typeof processResponse === 'function') {
-                processResponse(data);
+                let processResult = processResponse(data);
+
+                if (processResult instanceof HTMLElement) {
+                    dataElement = processResult;   
+                }
             } else {
-                let dataElement = document.createElement('div');
-
-                dataElement.setAttribute('class', 'data');
-
                 if (responseType.includes('text/html')) {
+                    dataElement = document.createElement('div');
                     dataElement.insertAdjacentHTML('afterBegin', data.response);
                 } else {
                     dataElement.insertAdjacentText('afterBegin', data.response);
                 }
                 
+                dataElement.setAttribute('class', 'data');
                 lineElement.appendChild(dataElement);
             }
+
+            lineElement.appendChild(dataElement);
 
             newLine();
         }
