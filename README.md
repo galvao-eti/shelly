@@ -95,7 +95,7 @@ If you provide a function named `processResponse`, shelly will automatically pas
 
 It should go without saying that **no one should use shelly without, at least, CSRF protection**.
 
-If you need more information about CSRF there's no better place than i[OWASP](https://owasp.org/www-community/attacks/csrf), of course.
+If you need more information about CSRF there's no better place than [OWASP](https://owasp.org/www-community/attacks/csrf), of course.
 
 Shelly expects to work with a CSRF token provided by the server. 
 
@@ -130,4 +130,5 @@ I'll soon publish an example implementation and will then link it here.
 ## Credits
 
 Created and maintained by [Er Galvão Abbott](https://github.com/galvao);
+
 Licensed under the Apcahe License by [Galvão Desenvolvimento Ltda](https://galvao.eti.br/) - see the [License file](/LICENSE).
