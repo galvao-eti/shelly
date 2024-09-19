@@ -4,11 +4,11 @@
  * shelly - A pure and vanilla shell-like interface for the web.
  * 
  * @author Er Galvão Abbott <galvao@galvao.eti.br>
- * @version 0.1.0-alpha
+ * @version 0.3.0-beta
  * @link https://github.com/galvao-eti/shelly
  */
 
-var CONFIG = CONFIG || (function () {
+var shellyConfig = shellyConfig || (function () {
     let message = " %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \n";
     message += " %%%%%%%%%  %%%%%%%   %%%%%%%%%%%%%%%%%%%%%%%%      %%%%%%%      %%%%%%%%%%%%%%%%%%%%%%%% \n";
     message += " %%%%%%%      %%%%%   %%%%%%%%%%%%%%%%%%%%%%%%%%%   %%%%%%%%%%   %%%%%%%%%%%%%%%%%%%%%%%% \n";
@@ -23,8 +23,9 @@ var CONFIG = CONFIG || (function () {
     message += " %%%%%%%%%  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%%%%%%%%% \n";
     message += " %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   %%%%%%%%%%%%% \n";
     message += " %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \n";
+    message += " %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% v0.3.0-beta %%%%% \n";
 
-    return {
+    let config = {
         "debug": false,
         "MOTD": message,
         "user": {
@@ -32,14 +33,21 @@ var CONFIG = CONFIG || (function () {
             "qualifier": "$"
         },
         "API": {
-            "method": "GET",
+            "method": "POST",
             "proto": "https",
-            "proto_separator": "://",
-            "address": "my-api-address.com",
-            "port": "",
-            "url_separator": "/",
+            "protoSeparator": "://",
+            "address": "",
+            "port": null,
+            "urlSeparator": "/",
             "endpoint": "",
             "CORS": true
+        },
+        "history": {
+            "maxLength": 50,
+            "useLocalStorage": true,
+            "storeDuplicates": false
         }
     };
+
+    return JSON.stringify(config);
 }());
