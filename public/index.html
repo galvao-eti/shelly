@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>shelly v. 0.1.0-alpha</title>
+        <title>shelly v0.3.0-beta</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="shortcut icon" type="image/png" href="image/favicon.png" />
+        <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="shellyCsrfToken" content="">
+        <link rel="shortcut icon" type="image/png" href="image/favicon.png">
         <link rel="stylesheet" href="style/shelly.css">
     </head>
     <body>
-        <script type="text/javascript" src="src/config.js"></script>
         <script type="text/javascript" src="src/shelly.js"></script>
+        <script type="text/javascript">
+            "use strict";
+
+            /**
+             * shelly - A pure and vanilla shell-like interface for the web.
+             * 
+             * @author Er Galvão Abbott <galvao@galvao.eti.br>
+             * @version 0.3.0-beta
+             * @link https://github.com/galvao-eti/shelly
+             */
+
+            /**
+             * This is the recommended way of using shelly.
+             * It avoids the caching of configuration and specially the caching of commands.
+             * 
+             * @see https://github.com/galvao-eti/shelly
+             */
+
+            const configScript = document.createElement('script');
+            const commandsScript = document.createElement('script');
+
+            configScript.src = 'src/config.js?qs=' + Shelly.generateRandomString();
+            commandsScript.src = 'src/commands.js?qs=' + Shelly.generateRandomString();
+
+            document.body.appendChild(configScript);
+
+            configScript.addEventListener('load', function () {
+                document.body.appendChild(commandsScript);
+            });
+
+            commandsScript.addEventListener('load', function () {
+                try {
+                    const shelly = new Shelly(shellyConfig, false);
+                    shelly.init();
+                } catch (e) {
+                    console.error(e.message);
+                }
+            });
+        </script>
     </body>
 </html>
