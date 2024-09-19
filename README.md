@@ -130,5 +130,5 @@ I'll soon publish an example implementation and will then link it here.
 ## Credits
 
 Created and maintained by [Er Galvão Abbott](https://github.com/galvao);
-
+ 
 Licensed under the Apcahe License by [Galvão Desenvolvimento Ltda](https://galvao.eti.br/) - see the [License file](/LICENSE).
