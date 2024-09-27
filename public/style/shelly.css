@@ -2,12 +2,12 @@
  * shelly - A pure and vanilla shell-like interface for the web.
  * 
  * @author Er Galvão Abbott <galvao@galvao.eti.br>
- * @version 0.3.0-beta
+ * @version 0.3.0
  * @link https://github.com/galvao-eti/shelly
  */
 
 body {
-    margin: 0;
+    margin: 0 1vw 0 1vw;
     padding: 0;
     font-family: monospace;
     background-color: rgb(32, 32, 32);
