@@ -17,18 +17,6 @@ a {
     text-decoration: none;
 }
 
-img {
-    width: 1.5vw;
-    margin-left: 2px;
-    margin-right: 2px;
-}
-
-.linkascii {
-    text-align: center;
-    font-size: 0.1vw;
-    color: rgb(0, 255, 0);
-}
-
 .motd {
     text-align: center;
     font-size: 0.75vw;
