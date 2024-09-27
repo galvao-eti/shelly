@@ -191,7 +191,9 @@ class Shelly
         }
 
         if (!response.ok) {
-            data = 'Error processing the request.';
+            if (typeof data.response === 'undefined') {
+                data = {"response": "Error processing the request."};
+            }
         }
         
         return data;
